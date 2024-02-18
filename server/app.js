@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 5000
 const {MONGOURI} = process.env.MONGOURI || require('./keys').MONGOURI;
 const cors = require('cors');
 const keys = require('./keys');
+require('dotenv').config();
 
 // to solve cors error
 app.use(cors({
@@ -13,15 +14,24 @@ app.use(cors({
     methods:["GET", "POST", "PUT", "DELETE"]
 }))
 
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => console.log('connected to mongo'));
 
-mongoose.connect(keys.MONGOURI)
 
-mongoose.connection.on('connected', ()=>{
-    console.log("connected to mongos ")
-})
-mongoose.connection.on('error', (err)=>{
-    console.log("err connecting", err)
-})
+// mongoose.connect(keys.MONGOURI)
+
+// mongoose.connection.on('connected', ()=>{
+//     console.log("connected to mongos ")
+// })
+// mongoose.connection.on('error', (err)=>{
+//     console.log("err connecting", err)
+// })
 
 require('./models/user')
 require('./models/post')
