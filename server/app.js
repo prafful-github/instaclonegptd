@@ -3,7 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 5000
 // oKYYAfdtXxI5IgWS password of username = praffulkumar121 on mongodb
-const {MONGOURI} = process.env.MONGOURI;
+const {MONGOURI} = process.env.MONGOURI || require('./keys').MONGOURI;
 const cors = require('cors');
 
 // to solve cors error
