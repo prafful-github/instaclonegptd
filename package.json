@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "MERN project",
   "scripts": {
-    "start": "cd client && npm start",
+    "start": "cd client && npm install && npm run build && cd ../server && npm install && node app.js",
     "server": "cd server && node app.js",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
     "heroku-postbuild": "cd client && npm install && npm run build"
@@ -27,9 +27,6 @@
   },
   "devDependencies": {
     "concurrently": "^7.0.0"
-  },
-  "engines": {
-    "node": ">=14.0.0"
   },
   "engines": {
     "node": ">=14.0.0"
