@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -6,7 +7,7 @@ const PORT = process.env.PORT || 5000
 const {MONGOURI} = process.env.MONGOURI || require('./keys').MONGOURI;
 const cors = require('cors');
 const keys = require('./keys');
-require('dotenv').config();
+
 
 // to solve cors error
 app.use(cors({
