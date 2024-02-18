@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 5000
 // oKYYAfdtXxI5IgWS password of username = praffulkumar121 on mongodb
 const {MONGOURI} = process.env.MONGOURI || require('./keys').MONGOURI;
 const cors = require('cors');
+const keys = require('./keys');
 
 // to solve cors error
 app.use(cors({
@@ -13,7 +14,7 @@ app.use(cors({
 }))
 
 
-mongoose.connect(MONGOURI)
+mongoose.connect(keys.MONGOURI)
 
 mongoose.connection.on('connected', ()=>{
     console.log("connected to mongos ")
